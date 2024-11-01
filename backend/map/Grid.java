@@ -5,11 +5,18 @@ public class Grid {
 
     /**
      * initializes a field with the given dimensions exclusivly using Terrain 0
+     *          Width i
+     * ___________________
+     * |
+     * | length j
+     * |
+     * |
+     * |
      */
-    public Grid(int length, int width) {
-        squares = new Terrain[length][width];
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; i < width; j++) {
+    public Grid(int width, int length) {
+        squares = new Terrain[width][length];
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; i < length; j++) {
                 squares[i][j] = new Terrain(0);
             }
         }

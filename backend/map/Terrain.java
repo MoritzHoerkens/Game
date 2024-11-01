@@ -13,7 +13,6 @@ public class Terrain {
     public final double FLANKING_MODIFIER; // appleis a multipier to the damage taken and inflicted by the unit while
                                            // flanking
     public final boolean SHOOT_OVER_ALLOWED;
-    //TODO directed modifiers, maybe only sefull for river since the protect only from one direction
     // TODO probably better to outsorce to JSON
     public Terrain(int type) {
         switch (type) {
