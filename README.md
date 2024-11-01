@@ -1,2 +1,2 @@
 # Game
-a short turnbased, gridbased game
+a short turnbased, gridbased game with multiple units
