@@ -33,4 +33,8 @@ public class Grid {
             }
         }
     }
+
+    public Terrain getTerrain(int i, int j) {
+        return squares[i][j];
+    }
 }

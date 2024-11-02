@@ -2,7 +2,7 @@ package backend.units;
 
 import java.util.HashSet;
 
-import backend.map.Terrain;
+import backend.map.Grid;
 
 /** basic melee unit with no bonus damage with decent damage to flankers */
 public class Swordman extends Unit {
@@ -16,7 +16,7 @@ public class Swordman extends Unit {
 
     }
 
-    public void attack(Unit[][] units, Terrain[][] terrains) {
+    public void attack(Unit[][] units, Grid terrains) {
         Unit primary;
         Unit[] secondary = new Unit[3];
         switch (this.facing) {
@@ -52,13 +52,16 @@ public class Swordman extends Unit {
                 break;
         }
         this.dealDamage(primary,
-                this.calcTerrainBasedDamage(terrains[primary.pos[0]][primary.pos[1]], attackDamage, false));
+                this.calcTerrainBasedDamage(terrains.getTerrain(primary.pos[0], primary.pos[1]), attackDamage, false));
         this.dealDamage(secondary[0],
-                this.calcTerrainBasedDamage(terrains[secondary[0].pos[0]][secondary[0].pos[1]], attackDamage, false));
+                this.calcTerrainBasedDamage(terrains.getTerrain(secondary[0].pos[0], secondary[0].pos[1]), attackDamage,
+                        false));
         this.dealDamage(secondary[1],
-                this.calcTerrainBasedDamage(terrains[secondary[1].pos[0]][secondary[1].pos[1]], attackDamage, false));
+                this.calcTerrainBasedDamage(terrains.getTerrain(secondary[1].pos[0], secondary[1].pos[1]), attackDamage,
+                        false));
         this.dealDamage(secondary[2],
-                this.calcTerrainBasedDamage(terrains[secondary[2].pos[0]][secondary[2].pos[1]], attackDamage, false));
+                this.calcTerrainBasedDamage(terrains.getTerrain(secondary[2].pos[0], secondary[2].pos[1]), attackDamage,
+                        false));
 
     }
 }

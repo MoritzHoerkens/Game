@@ -2,17 +2,19 @@ package backend.units;
 
 import java.util.HashSet;
 
+import backend.map.Grid;
 import backend.map.Terrain;
 
 public abstract class Unit {
     protected double attackDamage;// damge done to the primary target
-    protected double flankingAttackDamage;// damge done to flanking targets
+    protected double flankingAttackDamage;// damage done to flanking targets
     protected double health;
     protected double movementPoints;
     protected double remainingMovementPoints;
     public int facing;// 0 to 3 with 0 being up and giong clockwise
     public HashSet<TagsOptions> tags = new HashSet<TagsOptions>();
     public int[] pos = new int[2];
+    public String moveOrder;// example: 01231320; to be set by another class and used by TurnControl
 
     protected Unit(double attackDamage, double flankingAttackDamage, double health, int movementPoints,
             HashSet<TagsOptions> tags) {
@@ -30,11 +32,11 @@ public abstract class Unit {
         this.remainingMovementPoints = this.movementPoints;
     }
 
-    public void moveSquare(int direction, Unit[][] units, Terrain[][] terrain) {
+    public void moveSquare(int direction, Unit[][] units, Grid terrain) {
         switch (direction) {
             case 0:
                 if (this.pos[1] - 1 >= 0 && units[this.pos[0]][this.pos[1] - 1] == null) {
-                    Terrain t = terrain[this.pos[0]][this.pos[1] - 1];
+                    Terrain t = terrain.getTerrain(this.pos[0], this.pos[1] - 1);
                     if (t.PASSABLE && t.MOVEMENT_COST >= this.remainingMovementPoints)
                         this.pos[1] -= 1;
                     this.remainingMovementPoints -= t.MOVEMENT_COST;
@@ -42,21 +44,21 @@ public abstract class Unit {
                 break;
             case 1:
                 if (this.pos[0] + 1 < units.length && units[this.pos[0] + 1][this.pos[1] - 1] == null) {
-                    Terrain t = terrain[this.pos[0] + 1][this.pos[1]];
+                    Terrain t = terrain.getTerrain(this.pos[0] + 1, this.pos[1]);
                     this.pos[0] += 1;
                     this.remainingMovementPoints -= t.MOVEMENT_COST;
                 }
                 break;
             case 2:
                 if (this.pos[1] + 1 < units[0].length && units[this.pos[0] + 1][this.pos[1]] == null) {
-                    Terrain t = terrain[this.pos[0]][this.pos[1] + 1];
+                    Terrain t = terrain.getTerrain(this.pos[0], this.pos[1] + 1);
                     this.pos[1] += 1;
                     this.remainingMovementPoints -= t.MOVEMENT_COST;
                 }
                 break;
             case 3:
                 if (this.pos[0] - 1 >= 0 && units[this.pos[0] - 1][this.pos[1]] == null) {
-                    Terrain t = terrain[this.pos[0] - 1][this.pos[1]];
+                    Terrain t = terrain.getTerrain(this.pos[0] - 1, this.pos[1]);
                     this.pos[0] -= 1;
                     this.remainingMovementPoints -= t.MOVEMENT_COST;
                 }
@@ -140,6 +142,6 @@ public abstract class Unit {
      * calculates the damage dealt to all units around it and calls dealDamage
      * is to be implemented by the specific unit
      */
-    public abstract void attack(Unit[][] units, Terrain[][] terrain);
+    public abstract void attack(Unit[][] units, Grid terrain);
 
 }
