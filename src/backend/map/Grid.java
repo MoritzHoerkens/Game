@@ -6,7 +6,7 @@ public class Grid {
     /**
      * initializes a field with the given dimensions exclusivly using Terrain 0
      * Width i
-     * ___________________
+     * 0/0___________________
      * |
      * | length j
      * |
