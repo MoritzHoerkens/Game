@@ -8,7 +8,8 @@ public abstract class Unit {
     protected double attackDamage;// damge done to the primary target
     protected double flankingAttackDamage;// damge done to flanking targets
     protected double health;
-    protected int movementPoints;
+    protected double movementPoints;
+    protected double remainingMovementPoints;
     public int facing;// 0 to 3 with 0 being up and giong clockwise
     public HashSet<TagsOptions> tags = new HashSet<TagsOptions>();
     public int[] pos = new int[2];
@@ -20,6 +21,43 @@ public abstract class Unit {
         this.health = health;
         this.movementPoints = movementPoints;
         this.tags = tags;
+    }
+
+    public void moveSquare(int direction, Unit[][] units, Terrain[][] terrain) {
+        switch (direction) {
+            case 0:
+                if (this.pos[1] - 1 >= 0 && units[this.pos[0]][this.pos[1] - 1] == null) {
+                    Terrain t = terrain[this.pos[0]][this.pos[1] - 1];
+                    if (t.PASSABLE && t.MOVEMENT_COST >= this.remainingMovementPoints)
+                        this.pos[1] -= 1;
+                    this.remainingMovementPoints -= t.MOVEMENT_COST;
+                }
+                break;
+            case 1:
+                if (this.pos[0] + 1 < units.length && units[this.pos[0] + 1][this.pos[1] - 1] == null) {
+                    Terrain t = terrain[this.pos[0] + 1][this.pos[1]];
+                    this.pos[0] += 1;
+                    this.remainingMovementPoints -= t.MOVEMENT_COST;
+                }
+                break;
+            case 2:
+                if (this.pos[1] + 1 < units[0].length && units[this.pos[0] + 1][this.pos[1]] == null) {
+                    Terrain t = terrain[this.pos[0]][this.pos[1] + 1];
+                    this.pos[1] += 1;
+                    this.remainingMovementPoints -= t.MOVEMENT_COST;
+                }
+                break;
+            case 3:
+                if (this.pos[0] - 1 >= 0 && units[this.pos[0] - 1][this.pos[1]] == null) {
+                    Terrain t = terrain[this.pos[0] - 1][this.pos[1]];
+                    this.pos[0] -= 1;
+                    this.remainingMovementPoints -= t.MOVEMENT_COST;
+                }
+                break;
+            default:
+                System.err.println("Movement occcured in an invalid direction. Movement was cancelled");
+                break;
+        }
     }
 
     /**

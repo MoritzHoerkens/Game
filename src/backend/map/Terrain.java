@@ -9,6 +9,7 @@ public class Terrain {
     public final double FLANKING_MODIFIER; // applies a multipier to the damage taken by the unit while
                                            // flanked
     public final boolean SHOOT_OVER_ALLOWED;
+    public final boolean PASSABLE;
 
     // TODO probably better to outsorce to JSON
     public Terrain(int type) {
@@ -22,6 +23,7 @@ public class Terrain {
                 DEFENSE_MODIFIER_MELEE = 1;
                 DEFENSE_MODIFIER_RANGED = 1;
                 FLANKING_MODIFIER = 1;
+                PASSABLE = true;
                 break;
             case 1:// forest
                 /*
@@ -33,6 +35,7 @@ public class Terrain {
                 DEFENSE_MODIFIER_MELEE = 0.9;
                 DEFENSE_MODIFIER_RANGED = 0.8;
                 FLANKING_MODIFIER = 1;
+                PASSABLE = true;
                 break;
             case 2:// mountain
                 /*
@@ -44,6 +47,7 @@ public class Terrain {
                 DEFENSE_MODIFIER_MELEE = 0.6;
                 DEFENSE_MODIFIER_RANGED = 0.6;
                 FLANKING_MODIFIER = 0.5;
+                PASSABLE = true;
                 break;
             case 3:// river
                 /*
@@ -55,6 +59,7 @@ public class Terrain {
                 DEFENSE_MODIFIER_MELEE = 0.4;
                 DEFENSE_MODIFIER_RANGED = 1;
                 FLANKING_MODIFIER = 1 / DEFENSE_MODIFIER_MELEE;
+                PASSABLE = true;
                 break;
             default:// should not happen
                 SHOOT_OVER_ALLOWED = true;
@@ -62,6 +67,7 @@ public class Terrain {
                 DEFENSE_MODIFIER_MELEE = 1;
                 DEFENSE_MODIFIER_RANGED = 1;
                 FLANKING_MODIFIER = 1;
+                PASSABLE = true;
                 break;
         }
     }
