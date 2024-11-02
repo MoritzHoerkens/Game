@@ -2,6 +2,8 @@ package backend.units;
 
 import java.util.HashSet;
 
+import backend.map.Terrain;
+
 /** basic melee unit with no bonus damage with decent damage to flankers */
 public class Swordman extends Unit {
 
@@ -14,7 +16,7 @@ public class Swordman extends Unit {
 
     }
 
-    public void attack(Unit[][] units) {
+    public void attack(Unit[][] units, Terrain[][] terrains) {
         Unit primary;
         Unit[] secondary = new Unit[3];
         switch (this.facing) {
@@ -49,10 +51,14 @@ public class Swordman extends Unit {
                 secondary[2] = null;
                 break;
         }
-        this.dealDamage(primary, attackDamage);
-        this.dealDamage(secondary[0], attackDamage);
-        this.dealDamage(secondary[1], attackDamage);
-        this.dealDamage(secondary[2], attackDamage);
+        this.dealDamage(primary,
+                this.calcTerrainBasedDamage(terrains[primary.pos[0]][primary.pos[1]], attackDamage, false));
+        this.dealDamage(secondary[0],
+                this.calcTerrainBasedDamage(terrains[secondary[0].pos[0]][secondary[0].pos[1]], attackDamage, false));
+        this.dealDamage(secondary[1],
+                this.calcTerrainBasedDamage(terrains[secondary[1].pos[0]][secondary[1].pos[1]], attackDamage, false));
+        this.dealDamage(secondary[2],
+                this.calcTerrainBasedDamage(terrains[secondary[2].pos[0]][secondary[2].pos[1]], attackDamage, false));
 
     }
 }

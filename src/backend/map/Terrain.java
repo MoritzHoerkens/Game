@@ -6,12 +6,8 @@ public class Terrain {
                                                 // square takes
     public final double DEFENSE_MODIFIER_RANGED;// the modifier on the amount of ranged damage the unit occupying the
                                                 // square tales
-    public final double ATTACK_MODIFIER_MELEE; // the modifier on the amount of melee damage the unit occupying the
-                                               // square inflicts
-    public final double ATTACK_MODIFIER_RANGED;// the modifier on the amount of ranged damage the unit occupying the
-                                               // square inflicts
-    public final double FLANKING_MODIFIER; // appleis a multipier to the damage taken and inflicted by the unit while
-                                           // flanking
+    public final double FLANKING_MODIFIER; // applies a multipier to the damage taken by the unit while
+                                           // flanked
     public final boolean SHOOT_OVER_ALLOWED;
 
     // TODO probably better to outsorce to JSON
@@ -25,8 +21,6 @@ public class Terrain {
                 MOVEMENT_COST = 1;
                 DEFENSE_MODIFIER_MELEE = 1;
                 DEFENSE_MODIFIER_RANGED = 1;
-                ATTACK_MODIFIER_MELEE = 1;
-                ATTACK_MODIFIER_RANGED = 1;
                 FLANKING_MODIFIER = 1;
                 break;
             case 1:// forest
@@ -38,8 +32,6 @@ public class Terrain {
                 MOVEMENT_COST = 1.5;
                 DEFENSE_MODIFIER_MELEE = 0.9;
                 DEFENSE_MODIFIER_RANGED = 0.8;
-                ATTACK_MODIFIER_MELEE = 0.9;
-                ATTACK_MODIFIER_RANGED = 0.8;
                 FLANKING_MODIFIER = 1;
                 break;
             case 2:// mountain
@@ -51,8 +43,6 @@ public class Terrain {
                 MOVEMENT_COST = 2.5;
                 DEFENSE_MODIFIER_MELEE = 0.6;
                 DEFENSE_MODIFIER_RANGED = 0.6;
-                ATTACK_MODIFIER_MELEE = 0.6;
-                ATTACK_MODIFIER_RANGED = 0.6;
                 FLANKING_MODIFIER = 0.5;
                 break;
             case 3:// river
@@ -64,8 +54,6 @@ public class Terrain {
                 MOVEMENT_COST = 2;
                 DEFENSE_MODIFIER_MELEE = 0.4;
                 DEFENSE_MODIFIER_RANGED = 1;
-                ATTACK_MODIFIER_MELEE = 1.6;
-                ATTACK_MODIFIER_RANGED = 1;
                 FLANKING_MODIFIER = 1 / DEFENSE_MODIFIER_MELEE;
                 break;
             default:// should not happen
@@ -73,8 +61,6 @@ public class Terrain {
                 MOVEMENT_COST = 1;
                 DEFENSE_MODIFIER_MELEE = 1;
                 DEFENSE_MODIFIER_RANGED = 1;
-                ATTACK_MODIFIER_MELEE = 1;
-                ATTACK_MODIFIER_RANGED = 1;
                 FLANKING_MODIFIER = 1;
                 break;
         }

@@ -6,5 +6,9 @@ package backend.units;
 public enum TagsOptions {
     LARGE,
     SMALL,
-    DEAD
+    // statuses
+    DEAD,
+    // attacking types
+    MELEE,
+    RANGED
 }

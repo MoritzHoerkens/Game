@@ -2,6 +2,8 @@ package backend.units;
 
 import java.util.HashSet;
 
+import backend.map.Terrain;
+
 public abstract class Unit {
     protected double attackDamage;// damge done to the primary target
     protected double flankingAttackDamage;// damge done to flanking targets
@@ -77,10 +79,22 @@ public abstract class Unit {
         }
     }
 
+    public double calcTerrainBasedDamage(Terrain attackedTerrain, double damage, boolean flanked) {
+        if (this.tags.contains(TagsOptions.MELEE)) {
+            return damage * attackedTerrain.DEFENSE_MODIFIER_MELEE * (flanked ? attackedTerrain.FLANKING_MODIFIER : 1);
+        } else if (this.tags.contains(TagsOptions.MELEE)) {
+            return damage * attackedTerrain.DEFENSE_MODIFIER_RANGED * (flanked ? attackedTerrain.FLANKING_MODIFIER : 1);
+        } else {
+            System.err.println("the unit type: " + this.getClass()
+                    + " is missing a attacktype tag. The damage appied is the base damage");
+            return damage;
+        }
+    }
+
     /*
      * calculates the damage dealt to all units around it and calls dealDamage
      * is to be implemented by the specific unit
      */
-    public abstract void attack(Unit[][] units);
+    public abstract void attack(Unit[][] units, Terrain[][] terrain);
 
 }
