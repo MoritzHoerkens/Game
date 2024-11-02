@@ -11,7 +11,6 @@ public class Swordman extends Unit {
         this.facing = 0;
         tags = new HashSet<TagsOptions>();
         tags.add(TagsOptions.SMALL);
-        tags.add(TagsOptions.SMALL);
 
     }
 
