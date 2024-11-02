@@ -9,6 +9,7 @@ abstract class Unit {
     private double health;
     private int movementPoints;
     public ArrayList<tags> tags = new ArrayList<tags>();
+    public int[2] pos=new int[2];
     /**
      * the direction should only be 0-up,1-right,2-below,3-left
      * 
