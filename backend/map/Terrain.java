@@ -13,6 +13,7 @@ public class Terrain {
     public final double FLANKING_MODIFIER; // appleis a multipier to the damage taken and inflicted by the unit while
                                            // flanking
     public final boolean SHOOT_OVER_ALLOWED;
+
     // TODO probably better to outsorce to JSON
     public Terrain(int type) {
         switch (type) {
@@ -56,7 +57,8 @@ public class Terrain {
                 break;
             case 3:// river
                 /*
-                 * significatly benefits the defender in melee combat and has no effect on ranged combat, flanking increaded to counter the dadvantages
+                 * significatly benefits the defender in melee combat and has no effect on
+                 * ranged combat, flanking increaded to counter the dadvantages
                  */
                 SHOOT_OVER_ALLOWED = true;
                 MOVEMENT_COST = 2;
@@ -64,7 +66,7 @@ public class Terrain {
                 DEFENSE_MODIFIER_RANGED = 1;
                 ATTACK_MODIFIER_MELEE = 1.6;
                 ATTACK_MODIFIER_RANGED = 1;
-                FLANKING_MODIFIER = 1/DEFENSE_MODIFIER_MELEE;
+                FLANKING_MODIFIER = 1 / DEFENSE_MODIFIER_MELEE;
                 break;
             default:// should not happen
                 SHOOT_OVER_ALLOWED = true;
@@ -78,4 +80,3 @@ public class Terrain {
         }
     }
 }
-
