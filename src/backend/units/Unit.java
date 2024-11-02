@@ -23,6 +23,13 @@ public abstract class Unit {
         this.tags = tags;
     }
 
+    /**
+     * this method executes on the start on a new turn and resets changed variables
+     */
+    protected void newTurn() {
+        this.remainingMovementPoints = this.movementPoints;
+    }
+
     public void moveSquare(int direction, Unit[][] units, Terrain[][] terrain) {
         switch (direction) {
             case 0:
