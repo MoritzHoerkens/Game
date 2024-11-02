@@ -2,7 +2,6 @@ package backend.map;
 
 public class Grid {
     private Terrain squares[][];
-
     /**
      * initializes a field with the given dimensions exclusivly using Terrain 0
      *          Width i
