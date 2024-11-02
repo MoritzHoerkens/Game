@@ -2,7 +2,7 @@ package backend.units;
 
 import java.util.HashSet;
 
-/** basic melee unit with no bonus damage */
+/** basic melee unit with no bonus damage with decent damage to flankers */
 public class Swordman extends Unit {
 
     public Swordman(int[] pos) {
@@ -10,6 +10,7 @@ public class Swordman extends Unit {
         this.pos = pos;
         this.facing = 0;
         tags = new HashSet<TagsOptions>();
+        tags.add(TagsOptions.SMALL);
         tags.add(TagsOptions.SMALL);
 
     }
