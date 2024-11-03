@@ -31,14 +31,14 @@ public class TurnControl {
                 orders.add(Integer.valueOf(i.moveOrder.charAt(j)));
             }
             for (Integer n : orders) {
-                i.moveSquare(n, GlobalUnitGrid, grid);
+                i.moveSquare(n, grid);
             }
         }
     }
 
     private void unitsAttack() {
         for (Unit i : units) {
-            i.attack(GlobalUnitGrid, grid);
+            i.attack(grid);
         }
     }
 }

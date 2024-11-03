@@ -20,7 +20,7 @@ public class Team {
     public void executeMoveOrders(Grid grid) {
         for (Object[] i:moveOrders){
             Unit tmp=(Unit) i[0];
-            tmp.moveSquare(i[1], null, grid);
+            tmp.moveSquare((int) i[1], grid);
         }
     }
     public void addMoveOrder(Unit u, int direction){
