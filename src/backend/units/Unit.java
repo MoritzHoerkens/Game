@@ -2,6 +2,7 @@ package backend.units;
 
 import java.util.HashSet;
 
+import backend.TurnControl;
 import backend.map.Grid;
 import backend.map.Terrain;
 
@@ -32,10 +33,10 @@ public abstract class Unit {
         this.remainingMovementPoints = this.movementPoints;
     }
 
-    public void moveSquare(int direction, Unit[][] units, Grid terrain) {
+    public void moveSquare(int direction, Grid terrain) {
         switch (direction) {
             case 0:
-                if (this.pos[1] - 1 >= 0 && units[this.pos[0]][this.pos[1] - 1] == null) {
+                if (this.pos[1] - 1 >= 0 && TurnControl.GlobalUnitGrid[this.pos[0]][this.pos[1] - 1] == null) {
                     Terrain t = terrain.getTerrain(this.pos[0], this.pos[1] - 1);
                     if (t.PASSABLE && t.MOVEMENT_COST >= this.remainingMovementPoints)
                         this.pos[1] -= 1;
@@ -43,21 +44,23 @@ public abstract class Unit {
                 }
                 break;
             case 1:
-                if (this.pos[0] + 1 < units.length && units[this.pos[0] + 1][this.pos[1] - 1] == null) {
+                if (this.pos[0] + 1 < TurnControl.GlobalUnitGrid.length
+                        && TurnControl.GlobalUnitGrid[this.pos[0] + 1][this.pos[1] - 1] == null) {
                     Terrain t = terrain.getTerrain(this.pos[0] + 1, this.pos[1]);
                     this.pos[0] += 1;
                     this.remainingMovementPoints -= t.MOVEMENT_COST;
                 }
                 break;
             case 2:
-                if (this.pos[1] + 1 < units[0].length && units[this.pos[0] + 1][this.pos[1]] == null) {
+                if (this.pos[1] + 1 < TurnControl.GlobalUnitGrid[0].length
+                        && TurnControl.GlobalUnitGrid[this.pos[0] + 1][this.pos[1]] == null) {
                     Terrain t = terrain.getTerrain(this.pos[0], this.pos[1] + 1);
                     this.pos[1] += 1;
                     this.remainingMovementPoints -= t.MOVEMENT_COST;
                 }
                 break;
             case 3:
-                if (this.pos[0] - 1 >= 0 && units[this.pos[0] - 1][this.pos[1]] == null) {
+                if (this.pos[0] - 1 >= 0 && TurnControl.GlobalUnitGrid[this.pos[0] - 1][this.pos[1]] == null) {
                     Terrain t = terrain.getTerrain(this.pos[0] - 1, this.pos[1]);
                     this.pos[0] -= 1;
                     this.remainingMovementPoints -= t.MOVEMENT_COST;
@@ -94,33 +97,33 @@ public abstract class Unit {
      * Get the unit that is on top of the cirrent unit in the given Grid
      * returns null if the square on top does not exits or if there is no unit
      */
-    protected Unit getUnitTop(Unit[][] units) {
+    protected Unit getUnitTop() {
         if (this.pos[1] - 1 >= 0) {
-            return units[this.pos[0]][this.pos[1] - 1];
+            return TurnControl.GlobalUnitGrid[this.pos[0]][this.pos[1] - 1];
         } else {
             return null;
         }
     }
 
-    protected Unit getUnitRight(Unit[][] units) {
-        if (this.pos[0] + 1 < units.length) {
-            return units[this.pos[0] + 1][this.pos[1]];
+    protected Unit getUnitRight() {
+        if (this.pos[0] + 1 < TurnControl.GlobalUnitGrid.length) {
+            return TurnControl.GlobalUnitGrid[this.pos[0] + 1][this.pos[1]];
         } else {
             return null;
         }
     }
 
-    protected Unit getUnitBottom(Unit[][] units) {
-        if (this.pos[1] + 1 < units[0].length) {
-            return units[this.pos[0]][this.pos[1] - 1];
+    protected Unit getUnitBottom() {
+        if (this.pos[1] + 1 < TurnControl.GlobalUnitGrid[0].length) {
+            return TurnControl.GlobalUnitGrid[this.pos[0]][this.pos[1] - 1];
         } else {
             return null;
         }
     }
 
-    protected Unit getUnitLeft(Unit[][] units) {
+    protected Unit getUnitLeft() {
         if (this.pos[0] - 1 >= 0) {
-            return units[this.pos[0] - 1][this.pos[1]];
+            return TurnControl.GlobalUnitGrid[this.pos[0] - 1][this.pos[1]];
         } else {
             return null;
         }
@@ -139,9 +142,10 @@ public abstract class Unit {
     }
 
     /*
-     * calculates the damage dealt to all units around it and calls dealDamage
+     * calculates the damage dealt to all TurnControl.GlobalUnitGrid around it and
+     * calls dealDamage
      * is to be implemented by the specific unit
      */
-    public abstract void attack(Unit[][] units, Grid terrain);
+    public abstract void attack(Grid terrain);
 
 }

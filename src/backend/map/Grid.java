@@ -1,7 +1,7 @@
 package backend.map;
 
 public class Grid {
-    public static Terrain squares[][];
+    private Terrain GlobalTerrain[][];
 
     /**
      * initializes a field with the given dimensions exclusivly using Terrain 0
@@ -14,10 +14,10 @@ public class Grid {
      * |
      */
     public Grid(int width, int length) {
-        squares = new Terrain[width][length];
+        GlobalTerrain = new Terrain[width][length];
         for (int i = 0; i < width; i++) {
             for (int j = 0; i < length; j++) {
-                squares[i][j] = new Terrain(0);
+                GlobalTerrain[i][j] = new Terrain(0);
             }
         }
     }
@@ -29,12 +29,12 @@ public class Grid {
     public Grid(int[][] fields) {
         for (int i = 0; i < fields.length; i++) {
             for (int j = 0; i < fields[i].length; j++) {
-                squares[i][j] = new Terrain(fields[i][j]);
+                GlobalTerrain[i][j] = new Terrain(fields[i][j]);
             }
         }
     }
 
     public Terrain getTerrain(int i, int j) {
-        return squares[i][j];
+        return GlobalTerrain[i][j];
     }
 }

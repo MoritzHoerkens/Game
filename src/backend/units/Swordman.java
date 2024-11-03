@@ -1,7 +1,7 @@
-package backend.units;
+package backend.TurnControl.GlobalUnitGrid;
 
 import java.util.HashSet;
-
+import backend.TurnControl;
 import backend.map.Grid;
 
 /** basic melee unit with no bonus damage with decent damage to flankers */
@@ -16,33 +16,33 @@ public class Swordman extends Unit {
 
     }
 
-    public void attack(Unit[][] units, Grid terrains) {
+    public void attack(Grid terrains) {
         Unit primary;
         Unit[] secondary = new Unit[3];
         switch (this.facing) {
             case (0):
-                primary = this.getUnitTop(units);
-                secondary[0] = this.getUnitRight(units);
-                secondary[1] = this.getUnitBottom(units);
-                secondary[2] = this.getUnitLeft(units);
+                primary = this.getUnitTop(TurnControl.GlobalUnitGrid);
+                secondary[0] = this.getUnitRight(TurnControl.GlobalUnitGrid);
+                secondary[1] = this.getUnitBottom(TurnControl.GlobalUnitGrid);
+                secondary[2] = this.getUnitLeft(TurnControl.GlobalUnitGrid);
                 break;
             case (1):
-                primary = this.getUnitRight(units);
-                secondary[0] = this.getUnitTop(units);
-                secondary[1] = this.getUnitBottom(units);
-                secondary[2] = this.getUnitLeft(units);
+                primary = this.getUnitRight(TurnControl.GlobalUnitGrid);
+                secondary[0] = this.getUnitTop(TurnControl.GlobalUnitGrid);
+                secondary[1] = this.getUnitBottom(TurnControl.GlobalUnitGrid);
+                secondary[2] = this.getUnitLeft(TurnControl.GlobalUnitGrid);
                 break;
             case (2):
-                primary = this.getUnitBottom(units);
-                secondary[0] = this.getUnitRight(units);
-                secondary[1] = this.getUnitTop(units);
-                secondary[2] = this.getUnitLeft(units);
+                primary = this.getUnitBottom(TurnControl.GlobalUnitGrid);
+                secondary[0] = this.getUnitRight(TurnControl.GlobalUnitGrid);
+                secondary[1] = this.getUnitTop(TurnControl.GlobalUnitGrid);
+                secondary[2] = this.getUnitLeft(TurnControl.GlobalUnitGrid);
                 break;
             case (3):
-                primary = this.getUnitLeft(units);
-                secondary[0] = this.getUnitRight(units);
-                secondary[1] = this.getUnitBottom(units);
-                secondary[2] = this.getUnitTop(units);
+                primary = this.getUnitLeft(TurnControl.GlobalUnitGrid);
+                secondary[0] = this.getUnitRight(TurnControl.GlobalUnitGrid);
+                secondary[1] = this.getUnitBottom(TurnControl.GlobalUnitGrid);
+                secondary[2] = this.getUnitTop(TurnControl.GlobalUnitGrid);
                 break;
             default:
                 primary = null;

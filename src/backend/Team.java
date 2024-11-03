@@ -2,6 +2,8 @@ package backend;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import backend.map.Grid;
 import backend.units.Unit;
 
 public class Team {
@@ -15,10 +17,10 @@ public class Team {
         this.colour = colour;
     }
 
-    public void executeMoveOrders() {
+    public void executeMoveOrders(Grid grid) {
         for (Object[] i:moveOrders){
             Unit tmp=(Unit) i[0];
-            tmp.moveSquare(i[1], null, null);
+            tmp.moveSquare(i[1], null, grid);
         }
     }
     public void addMoveOrder(Unit u, int direction){
