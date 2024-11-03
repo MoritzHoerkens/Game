@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 class TurnControl {
-    Unit[][] unitGrid;
+    public static Unit[][] unitGrid;
     Grid grid = new Grid(10, 10);
     Set<Unit> units = new HashSet<Unit>();
 

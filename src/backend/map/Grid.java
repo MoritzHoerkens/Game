@@ -1,7 +1,7 @@
 package backend.map;
 
 public class Grid {
-    private Terrain squares[][];
+    public static Terrain squares[][];
 
     /**
      * initializes a field with the given dimensions exclusivly using Terrain 0
