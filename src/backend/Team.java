@@ -26,4 +26,7 @@ public class Team {
     public void addMoveOrder(Unit u, int direction){
         moveOrders.add(new Object[]{u,Integer.valueOf(direction)});
     }
+    public void addUnit(Unit unit){
+        units.add(unit);
+    }
 }
