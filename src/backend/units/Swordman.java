@@ -1,14 +1,15 @@
 package backend.units;
 
 import java.util.HashSet;
-import backend.TurnControl;
+
+import backend.Team;
 import backend.map.Grid;
 
 /** basic melee unit with no bonus damage with decent damage to flankers */
 public class Swordman extends Unit {
 
-    public Swordman(int[] pos) {
-        super(20, 10, 100, 2, null);
+    public Swordman(int[] pos, Team team) {
+        super(20, 10, 100, 2, null, team);
         this.pos = pos;
         this.facing = 0;
         tags = new HashSet<TagsOptions>();

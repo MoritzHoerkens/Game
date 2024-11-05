@@ -2,6 +2,7 @@ package backend.units;
 
 import java.util.HashSet;
 
+import backend.Team;
 import backend.TurnControl;
 import backend.map.Grid;
 import backend.map.Terrain;

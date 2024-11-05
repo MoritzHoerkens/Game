@@ -2,7 +2,7 @@ package backend;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-
+import java.awt.Color;
 import backend.map.Grid;
 import backend.units.Unit;
 
@@ -10,9 +10,9 @@ public class Team {
     public final String name;
     private ArrayList<Object[]> moveOrders = new ArrayList<>();
     public HashSet<Unit> units = new HashSet<Unit>();// INdex 0 is the unit and the Rest are Integers
-    private String colour;// in hexadecimal
+    private Color colour;// in hexadecimal
 
-    public Team(String name, String colour) {
+    public Team(String name, Color colour) {
         this.name = name;
         this.colour = colour;
     }
@@ -26,10 +26,6 @@ public class Team {
 
     public void addMoveOrder(Unit u, int direction) {
         moveOrders.add(new Object[] { u, Integer.valueOf(direction) });
-    }
-
-    public void addUnit(Unit unit) {
-        units.add(unit);
     }
 
     public void addUnit(Unit unit) {
