@@ -18,12 +18,21 @@ public class Team {
     }
 
     public void executeMoveOrders(Grid grid) {
-        for (Object[] i:moveOrders){
-            Unit tmp=(Unit) i[0];
+        for (Object[] i : moveOrders) {
+            Unit tmp = (Unit) i[0];
             tmp.moveSquare((int) i[1], grid);
         }
     }
-    public void addMoveOrder(Unit u, int direction){
-        moveOrders.add(new Object[]{u,Integer.valueOf(direction)});
+
+    public void addMoveOrder(Unit u, int direction) {
+        moveOrders.add(new Object[] { u, Integer.valueOf(direction) });
+    }
+
+    public void addUnit(Unit unit) {
+        units.add(unit);
+    }
+
+    public void addUnit(Unit unit) {
+        units.add(unit);
     }
 }

@@ -18,12 +18,13 @@ public abstract class Unit {
     public String moveOrder;// example: 01231320; to be set by another class and used by TurnControl
 
     protected Unit(double attackDamage, double flankingAttackDamage, double health, int movementPoints,
-            HashSet<TagsOptions> tags) {
+            HashSet<TagsOptions> tags, Team team) {
         this.attackDamage = attackDamage;
         this.flankingAttackDamage = flankingAttackDamage;
         this.health = health;
         this.movementPoints = movementPoints;
         this.tags = tags;
+        team.addUnit(this);
     }
 
     /**
