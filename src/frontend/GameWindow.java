@@ -60,7 +60,7 @@ public class GameWindow extends JFrame {
         allUnitButtons.add(getUnitRecruitmentButton("Test2", null));
         allUnitButtons.add(getUnitRecruitmentButton("Test3", null));
         allUnitButtons.add(getUnitRecruitmentButton("Test4", null));
-        for (JButton i : allUnitButtons) {
+        for (int i = 0; i < allUnitButtons.size(); i++) {
             GridBagConstraints tmp = new GridBagConstraints();
             tmp.gridwidth = 3;
             tmp.gridheight = 3;
