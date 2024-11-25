@@ -6,10 +6,15 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+
+import backend.units.Swordman;
+import backend.units.Unit;
 
 public class GameWindow extends JFrame {
     private JSplitPane unitFieldSplit;// holds the COntainer for the Units and the Playingfield
@@ -49,10 +54,10 @@ public class GameWindow extends JFrame {
 
         // initalize all buttons for unit recruitment
         ArrayList<JButton> allUnitButtons = new ArrayList<JButton>();
-        allUnitButtons.add(getUnitRecruitmentButton("Test1", null));
-        allUnitButtons.add(getUnitRecruitmentButton("Test2", null));
-        allUnitButtons.add(getUnitRecruitmentButton("Test3", null));
-        allUnitButtons.add(getUnitRecruitmentButton("Test4", null));
+        allUnitButtons.add(getUnitRecruitmentButton("Test1", null, "src\\images\\black.png"));
+        allUnitButtons.add(getUnitRecruitmentButton("Test2", null, null));
+        allUnitButtons.add(getUnitRecruitmentButton("Test3", null, null));
+        allUnitButtons.add(getUnitRecruitmentButton("Test4", null, null));
         for (int i = 0; i < allUnitButtons.size(); i++) {
             JButton current = allUnitButtons.get(i);
 
@@ -73,9 +78,21 @@ public class GameWindow extends JFrame {
     /*
      * configures and returns a button used for Unit Recruitment
      */
-    private JButton getUnitRecruitmentButton(String name, Class unit) {
+    @SuppressWarnings("rawtypes")
+    private JButton getUnitRecruitmentButton(String name, Class unit, String iconPath) {
         JButton x = new JButton();
         x.setName(name);
+        // set the icon
+        if (iconPath != null) {
+            try {
+                Icon icon = new ImageIcon(ImageIcon.class.getResource(iconPath));
+                x.setIcon(icon);
+                System.out.print(iconPath + ":" + icon.getIconHeight());
+            } catch (Exception e) {
+                throw e;
+            }
+        }
+
         return x;
     }
 
