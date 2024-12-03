@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
@@ -16,10 +18,21 @@ import javax.swing.JSplitPane;
 import backend.units.Swordman;
 import backend.units.Unit;
 
-public class GameWindow extends JFrame {
+public class GameWindow extends JFrame implements ActionListener {
     private JSplitPane unitFieldSplit;// holds the COntainer for the Units and the Playingfield
     private JPanel unitPane;
     private JPanel fieldPane;
+    /*
+     * ise this vairable to set what to do after the player makes an action like
+     * clikcing on the map
+     * for example for building a unit
+     */
+    private String currentActionWaitingForUser;
+    /*
+     * for use in buying a unit
+     */
+    @SuppressWarnings("rawtypes")
+    private Class selectedUnitType;
 
     public static void main(String[] args) {
         GameWindow x = new GameWindow();
@@ -47,11 +60,20 @@ public class GameWindow extends JFrame {
         unitFieldSplit.setDividerLocation(0.2);
     }
 
-    private void initailizeField(){
-        fieldPane= new JPanel();
+    private void initailizeField() {
+        fieldPane = new JPanel();
         unitFieldSplit.setRightComponent(fieldPane);
-        GridLayout layout
         fieldPane.setLayout(getLayout());
+    }
+
+    public void mapClicked() {
+        switch (currentActionWaitingForUser) {
+            case "placeUnit":
+                break;
+
+            default:
+                break;
+        }
     }
 
     private void initailizeUnitCards() {
@@ -81,9 +103,9 @@ public class GameWindow extends JFrame {
             tmp.gridy = (int) Math.floor(i / 2);
             tmp.insets = new Insets(10, 10, 10, 10);
 
-            current.setPreferredSize(new Dimension(76, 75));
+            current.setPreferredSize(new Dimension(75, 75));
             // TODO Setname with line break
-
+            current.addActionListener(this);
             unitPane.add(current, tmp);
         }
     }
@@ -107,6 +129,14 @@ public class GameWindow extends JFrame {
         }
 
         return x;
+    }
+
+    /*
+     * only used for unit reqriutmentbuttons; ap buttons are hondeld by the map
+     * class
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
     }
 
 }
