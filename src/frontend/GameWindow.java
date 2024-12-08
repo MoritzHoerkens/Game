@@ -1,5 +1,6 @@
 package frontend;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,7 +19,7 @@ import javax.swing.JSplitPane;
 import backend.units.Swordman;
 import backend.units.Unit;
 
-public class GameWindow extends JFrame implements ActionListener {
+public class GameWindow extends JFrame {
     private JSplitPane unitFieldSplit;// holds the COntainer for the Units and the Playingfield
     private JPanel unitPane;
     private JPanel fieldPane;
@@ -32,7 +33,7 @@ public class GameWindow extends JFrame implements ActionListener {
      * for use in buying a unit
      */
     @SuppressWarnings("rawtypes")
-    private Class selectedUnitType;
+    public Class selectedUnitType;
 
     public static void main(String[] args) {
         GameWindow x = new GameWindow();
@@ -105,7 +106,6 @@ public class GameWindow extends JFrame implements ActionListener {
 
             current.setPreferredSize(new Dimension(75, 75));
             // TODO Setname with line break
-            current.addActionListener(this);
             unitPane.add(current, tmp);
         }
     }
@@ -127,16 +127,15 @@ public class GameWindow extends JFrame implements ActionListener {
                 throw e;
             }
         }
-
+        x.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton source = (JButton) e.getSource();
+                source.setBackground(new Color(255, 215, 0));
+                selectedUnitType = unit;
+            }
+        });
         return x;
-    }
-
-    /*
-     * only used for unit reqriutmentbuttons; ap buttons are hondeld by the map
-     * class
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
     }
 
 }

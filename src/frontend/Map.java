@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import backend.TurnControl;
+
 public class Map extends JPanel implements ActionListener {
     private int[] dimensions;
     private int[] selected;
@@ -38,7 +40,7 @@ public class Map extends JPanel implements ActionListener {
 
     @Override
     /*
-     * returns the coordinates of the pressed button
+     * sets the selected field to the clicked
      */
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < dimensions[0]; i++) {
@@ -50,6 +52,22 @@ public class Map extends JPanel implements ActionListener {
                 }
             }
         }
-        throw new RuntimeException("The button pressed is not on the map");
+        if (selected == null) {
+            throw new RuntimeException("The button pressed is not on the map");
+        }
+        /*
+         * do stuff
+         */
+        // FIXME you can place two units on the sme unoccupied tile since globaluntigrid
+        // is only updated each turn andn ot after buying a unit
+        if (TurnControl.GlobalUnitGrid[selected[0]][selected[1]] != null) {
+            // TODO create UNIT
+        } else {
+            System.err.println("SPce already occupied");
+        }
+
+        // ---
+        selected = null;
     }
+
 }
